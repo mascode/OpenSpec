@@ -1,0 +1,1 @@
+A simple python program to check system information in the console
