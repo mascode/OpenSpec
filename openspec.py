@@ -2,6 +2,7 @@ import psutil
 import platform
 import time
 from datetime import datetime
+import GPUtil as GPU
 
 # Covert numbers so they're easier to read
 def get_size(bytes, suffix="B"):
@@ -115,7 +116,12 @@ def net_info():
     net_io = psutil.net_io_counters()
     print(f"Total Bytes Sent: {get_size(net_io.bytes_sent)}")
     print(f"Total Bytes Received: {get_size(net_io.bytes_recv)}")
-    
+
+# GPU Information, only supports Nvidia cards at this time. 
+def nvidia_gpu_info():
+    print("="*100, "GPU Information", "="*100)
+    GPU.showUtilization(all=True)
+
 if __name__ == "__main__":
     system_info()
     boot_time()
@@ -123,3 +129,4 @@ if __name__ == "__main__":
     memory_info()
     disk_info()
     net_info()
+    nvidia_gpu_info()
